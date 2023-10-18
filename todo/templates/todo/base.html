@@ -1,0 +1,17 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'todo/bootstrap5/css/bootstrap.min.css' %}">
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+    {% include "todo/partials/header.html" %}
+    <main class="py-4">{% block mainContent %}{% endblock mainContent %}</main>
+    <footer>Footer</footer>
+  </body>
+  <script src="{% static 'todo/bootstrap5/js/bootstrap.min.js' %}"></script>
+</html>

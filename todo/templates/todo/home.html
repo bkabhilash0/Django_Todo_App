@@ -1,0 +1,20 @@
+{% extends "todo/base.html" %} {% block title %}Sample Title{% endblock title %}
+{% block mainContent %}
+<h1 class="text-center">All Todos</h1>
+<div class="d-flex flex-wrap gap-3 col-lg-10 mx-auto flex-row md-8 py-2">
+  {% for i in todos %}
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      <p class="card-text">
+        Some quick example text to build on the card title and make up the bulk
+        of the card's content.
+      </p>
+      <a href="#" class="btn btn-primary">Read More</a>
+      <a href="#" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock mainContent %}

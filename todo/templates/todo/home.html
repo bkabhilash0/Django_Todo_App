@@ -1,20 +1,26 @@
-{% extends "todo/base.html" %} {% block title %}Sample Title{% endblock title %}
+{% extends "todo/base.html" %} {% block title %}Welcome to my Todos App{% endblock title %}
 {% block mainContent %}
-<h1 class="text-center">All Todos</h1>
-<div class="d-flex flex-wrap gap-3 col-lg-10 mx-auto flex-row md-8 py-2">
-  {% for i in todos %}
-  <div class="card" style="width: 18rem">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </p>
-      <a href="#" class="btn btn-primary">Read More</a>
-      <a href="#" class="btn btn-danger">Delete</a>
-    </div>
-  </div>
-  {% endfor %}
-</div>
+    <section class="w-100 h-100 bg-success d-flex justify-content-center align-items-center flex-column gy-2"
+             style="min-height: 100vh">
+        <h1 class="display-1 fw-bold text-white" style="font-size: 100px">TODO APP</h1>
+        <p class="text-white">Welcome to the Mini Todo App Created Using Django</p>
+        <a class="btn btn-primary btn-lg rounded-pill px-5" href="{% url 'todos:todos.index' %}">Get Started</a>
+    </section>
+    {#<h1 class="text-center">All Todos</h1>#}
+    {#<div class="d-flex flex-wrap gap-3 col-lg-10 mx-auto flex-row md-8 py-2">#}
+    {#  {% for i in todos %}#}
+    {#  <div class="card" style="width: 18rem">#}
+    {#    <div class="card-body">#}
+    {#      <h5 class="card-title">Card title</h5>#}
+    {#      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>#}
+    {#      <p class="card-text">#}
+    {#        Some quick example text to build on the card title and make up the bulk#}
+    {#        of the card's content.#}
+    {#      </p>#}
+    {#      <a href="#" class="btn btn-primary">Read More</a>#}
+    {#      <a href="#" class="btn btn-danger">Delete</a>#}
+    {#    </div>#}
+    {#  </div>#}
+    {#  {% endfor %}#}
+    {#</div>#}
 {% endblock mainContent %}

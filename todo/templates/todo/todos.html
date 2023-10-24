@@ -1,10 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends 'todo/base.html' %}
 
-</body>
-</html>
+{% block title %} All my Todos {% endblock title %}
+
+{% block mainContent %}
+    <h1 class="text-center">All My Todos</h1>
+    <div class="container vstack gap-3 rounded">
+        {% if messages %}
+            {% for message in messages %}
+                {#                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>#}
+                <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %} alert-dismissible fade show"
+                     role="alert">
+                    <strong>{{ message.tags|upper }}</strong>: {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% if not todos %}
+        <h1 class="text-center text-bg-warning py-5">No Todos Found!</h1>
+        <a href="{% url 'todos:todos.create' %}" class="btn btn-primary align-self-center">Add New Todos</a>
+    {% endif %}
+        {% for todo in todos %}
+            <div class="border rounded-2 d-flex flex-row justify-content-between align-items-center shadow-sm py-1 px-3"
+                 style="height: 100px">
+                <div class="w-50">
+                    <p class="h3">{{ todo.todo }}</p>
+                    <small class="text-muted">{{ todo.created_at }}</small>
+                </div>
+                <div class="">
+                    {% if not todo.completed %}
+                    	<a class="btn btn-success" href="{% url 'todos:todos.toggle' todo.id %}">Mark As Completed</a>
+                    {% else %}
+                        <button class="btn btn-success">Completed</button>
+                    {% endif %}
+                    <a class="btn btn-danger" href="{% url 'todos:todos.delete' todo.id %}">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock mainContent %}

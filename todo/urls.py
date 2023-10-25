@@ -9,4 +9,5 @@ urlpatterns = [
     path('todos/create', views.createTodo, name="todos.create"),
     path('todo/toggle/<int:id>', views.toggleTodoState, name="todos.toggle"),
     path('todo/delete/<int:todo>', views.deleteTodo, name="todos.delete"),
+    path('todo/update/<int:todo>', views.updateTodo, name="todos.update")
 ]

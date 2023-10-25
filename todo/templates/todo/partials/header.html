@@ -20,14 +20,33 @@
                     <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
                        aria-current="page" href="{% url 'todos:index' %}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if request.resolver_match.url_name == 'todos.index' %}active{% endif %}"
-                       href='{% url 'todos:todos.index' %}'>All my Todos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if request.resolver_match.url_name == 'todos.create' %}active{% endif %}"
-                       href="{% url 'todos:todos.create' %}">Add New Todo</a>
-                </li>
+                {% if not request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %}"
+                           href="{% url 'authentication:register' %}">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}"
+                           href="{% url 'authentication:login' %}">Sign In</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'todos.index' %}active{% endif %}"
+                           href='{% url 'todos:todos.index' %}'>All my Todos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'todos.create' %}active{% endif %}"
+                           href="{% url 'todos:todos.create' %}">Add New Todo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}"
+                           href="{% url 'authentication:login' %}">{{ request.user.first_name }} {{ request.user.last_name }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}"
+                           href="{% url 'authentication:logout' %}">Logout</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>

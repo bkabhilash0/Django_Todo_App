@@ -7,7 +7,7 @@
     <div class="container vstack gap-3 rounded">
         {% if messages %}
             {% for message in messages %}
-{#                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>#}
+                {#                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>#}
                 <div class="alert alert-danger alert-dismissible fade show"
                      role="alert">
                     <strong>{{ message.tags|upper }}</strong>: {{ message }}
@@ -17,10 +17,16 @@
         {% endif %}
     </div>
     <form class="container vstack gap-3 rounded" method="POST">
-    {% csrf_token %}
+        {% csrf_token %}
         <div class="">
-            <label for="todo" class="form-label">Todo</label>
-            <input type="text" id="todo" name="todo" class="form-control">
+            {% if todo %}
+                <h1>Update Todo</h1>
+                <label for="todo" class="form-label">Todo</label>
+                <input type="text" id="todo" name="todo" class="form-control" value="{{ todo.todo }}">
+            {% else %}
+                <label for="todo" class="form-label">Todo</label>
+                <input type="text" id="todo" name="todo" class="form-control">
+            {% endif %}
         </div>
         <button class="btn btn-primary d-inline-block align-self-start" type="submit">Submit</button>
     </form>

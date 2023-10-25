@@ -1,0 +1,46 @@
+{% extends 'authentication/base.html' %}
+
+{% block title %}Create New Account{% endblock %}
+
+{% block mainContent %}
+    <h1 class="text-center mb-5">Create New Account</h1>
+    <div class="container" style="max-width: 600px">
+        {% include 'message-alert.html' %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="mb-3 col-6">
+                    <label for="fname" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="fname" name="first_name">
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="lname" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lname" name="last_name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-6">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                           name="email">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username"
+                           name="username">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">I Agree to <strong>Terms and
+                    Conditions</strong></label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}

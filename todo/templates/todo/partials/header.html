@@ -20,6 +20,10 @@
                     <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
                        aria-current="page" href="{% url 'todos:index' %}">Home</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
+                       aria-current="page" href="{% url 'blog:blog.index' %}">Blog</a>
+                </li>
                 {% if not request.user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %}"

@@ -1,0 +1,47 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Welcome to my Blog{% endblock title %}
+
+{% block mainContent %}
+    <section class="container py-3 vstack gap-3">
+        <h1 class="text-center text-decoration-underline">Welcome to XYZ Blogs</h1>
+        <div class="row g-3">
+            {% for blog in blogs %}
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card" style="">
+                        {% if blog.image %}
+                            <img src="{{ blog.image.url }}"
+                                 class="card-img-top img-fluid" style="height: 200px" alt="Cover Image">
+                        {% else %}
+                            <img src="{% static 'images/default_image.png' %}"
+                                 class="card-img-top img-fluid" style="height: 200px"
+                                 alt="Cover Image">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ blog.title }}</h5>
+                            <p class="card-text" style="text-align: justify">{{ blog.content | truncatechars:120 }}</p>
+                            <div class="row gap-1">
+                                <a href="{% url 'blog:blog.show' blog.id %}" class="btn btn-primary col-auto">Read
+                                    More</a>
+                                {% if blog.user.id == request.user.id %}
+                                    <a href="{% url 'blog:blog.edit' blog.id %}"
+                                       class="btn btn-secondary col-auto">Edit</a>
+                                    <a href="{% url 'blog:blog.delete' blog.id %}"
+                                       class="btn btn-danger col-auto">Delete</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="card-footer text-body-secondary d-flex justify-content-between">
+                            <p class="text-muted mb-0">By: {{ blog.user.username }}</p>
+                            <p class="text-muted mb-0">{{ blog.created_at|date:'M d - h:i A' }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <h1>No Blogs Available</h1>
+            {% endfor %}
+
+        </div>
+    </section>
+{% endblock mainContent %}

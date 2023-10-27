@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+
+{% load django_bootstrap5 %}
+
+{% block title %}Add a Blog{% endblock title %}
+
+{% block mainContent %}
+    <section class="container py-3 vstack gap-3">
+        <h1 class="text-center text-decoration-underline">Add a new Blog</h1>
+
+        <div class="row">
+            <form method="POST" class="col-xl-12 mx-auto" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {#            {% for field in form %}#}
+                {#                <div class="fieldWrapper">#}
+                {#                    {{ field.errors }}#}
+                {#                    {{ field.label_tag }} {{ field }}#}
+                {#                    {% if field.help_text %}#}
+                {#                        <p class="help">{{ field.help_text|safe }}</p>#}
+                {#                    {% endif %}#}
+                {#                </div>#}
+                {#            {% endfor %}#}
+                <button type="submit" class="btn btn-primary">Add the Blog</button>
+            </form>
+        </div>
+    </section>
+{% endblock mainContent %}

@@ -5,18 +5,25 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="{% static 'todo/bootstrap5/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap5/css/bootstrap.min.css' %}">
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-{% include "todo/partials/header.html" %}
+{#{% include "todo/partials/header.html" %}#}
+{% include "blog/partials/navBar.html" %}
 <main class="">{% block mainContent %}{% endblock mainContent %}</main>
-<footer class="bg-primary bg-gradient py-2 text-white fixed-bottom">
+{#<footer class="bg-primary bg-gradient py-2 text-white fixed-bottom">#}
+{#    <div class="container d-flex align-items-center justify-content-between h-100">#}
+{#        <p class="h3 mb-0">Footer</p>#}
+{#        <p class="mb-0">All rights Reserved</p>#}
+{#    </div>#}
+{#</footer>#}
+<footer class="text-bg-dark bg-gradient py-2 text-white fixed-bottom">
     <div class="container d-flex align-items-center justify-content-between h-100">
         <p class="h3 mb-0">Footer</p>
         <p class="mb-0">All rights Reserved</p>
     </div>
 </footer>
 </body>
-<script src="{% static 'todo/bootstrap5/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'bootstrap5/js/bootstrap.bundle.min.js' %}"></script>
 </html>

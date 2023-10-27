@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}{{ blog.title }}{% endblock title %}
+
+{% block mainContent %}
+    <section class="container py-3 vstack gap-3">
+        <h1 class="text-center text-decoration-underline">{{ blog.title }}</h1>
+        <div class="row d-flex justify-content-between">
+            <p class="col-auto">Author: {{ blog.user.username }}</p>
+            <p class="col-auto">Published On: {{ blog.created_at }}</p>
+        </div>
+        {% if blog.image %}
+            <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="img-fluid">
+        {% else %}
+            <img src="{% static 'images/default_image.png' %}" alt="{{ blog.title }}" class="img-fluid">
+        {% endif %}
+        <p class="lh-lg h5" style="text-align: justify">{{ blog.content }}</p>
+    </section>
+{% endblock mainContent %}

@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
+from django.conf import settings
 
 
 # Create your views here.
@@ -64,7 +65,7 @@ def loginUser(request: HttpRequest):
             if user is not None:
                 messages.success(request, "User Logged in Successfully!")
                 login(request, user)
-                return HttpResponseRedirect(reverse("todos:todos.index"))
+                return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
             else:
                 raise Exception("Invalid Credentials")
         except Exception as e:
@@ -76,6 +77,6 @@ def logoutUser(request: HttpRequest):
     if request.user.is_authenticated:
         logout(request)
         messages.success(request, "User Logged Out Successfully!")
-        return HttpResponseRedirect(reverse("todos:index"))
+        return HttpResponseRedirect(settings.LOGOUT_REDIRECT_URL)
     else:
         return render(request, "authentication/login.html")

@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'bootstrap5/css/bootstrap.min.css' %}">
+    {#    {% load django_bootstrap5 %}#}
+
+    {#    {% bootstrap_css %}#}
+
+    {#    {% bootstrap_javascript %}#}
+
+    {#    {% bootstrap_messages %}#}
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+{% include 'blog/partials/navBar.html' %}
+<main>
+    {% include "message-alert.html" %}
+    {% block mainContent %}{% endblock mainContent %}
+</main>
+<footer class="fixed-bottom text-bg-dark py-3 ">
+    <div class="container">Footer</div>
+</footer>
+<script src="{% static 'bootstrap5/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

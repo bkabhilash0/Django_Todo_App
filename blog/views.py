@@ -40,7 +40,14 @@ def updateBlog(request: HttpRequest, pk):
         form = BlogForm(instance=blog)
         return render(request, "blog/blog.update.html", {"form": form})
     if request.method == 'POST':
-        form = BlogForm(request.POST, instance=blog)
+        clear_image = request.POST.get('image-clear')
+        # if clear_image:
+        #     blog.image = None
+        form = BlogForm(request.POST, request.FILES, instance=blog)
+        print(form.errors)
+        # if clear_image:
+        #     form = form.save(commit=False)
+        #     form['image'] = None
         if form.is_valid():
             form.save()
             messages.success(request, "Blog Updated Successfully!")
@@ -64,5 +71,17 @@ def deleteBlog(request: HttpRequest, pk):
 
 
 def viewBlog(request: HttpRequest, pk):
-    blog = get_object_or_404(Blog, pk=pk,status="A")
+    blog = get_object_or_404(Blog, pk=pk, status="A")
     return render(request, "blog/blog.show.html", {"blog": blog})
+
+
+@login_required
+def likeBlog(request: HttpRequest, pk):
+    user = request.user
+    post = get_object_or_404(Blog, pk=pk)
+    if request.method == "GET":
+        if post.likes.filter(id=user.id).exists():
+            post.likes.remove(user)
+        else:
+            post.likes.add(user)
+        return render(request, "blog/blog.show.html", {"blog": post})

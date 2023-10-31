@@ -65,7 +65,9 @@ def loginUser(request: HttpRequest):
             if user is not None:
                 messages.success(request, "User Logged in Successfully!")
                 login(request, user)
-                return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
+                redirect_url = request.GET.get('next', '/')
+                print(redirect_url)
+                return redirect(redirect_url)
             else:
                 raise Exception("Invalid Credentials")
         except Exception as e:

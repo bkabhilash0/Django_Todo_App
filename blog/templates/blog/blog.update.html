@@ -9,7 +9,7 @@
         <h1 class="text-center text-decoration-underline">Update Blog</h1>
 
         <div class="row">
-            <form method="POST" class="col-xl-12 mx-auto">
+            <form method="POST" class="col-xl-12 mx-auto" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% bootstrap_form form %}
                 {#            {% for field in form %}#}

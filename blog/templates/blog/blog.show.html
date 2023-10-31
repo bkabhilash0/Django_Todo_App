@@ -10,6 +10,8 @@
             <p class="col-auto">Author: {{ blog.user.username }}</p>
             <p class="col-auto">Published On: {{ blog.created_at }}</p>
         </div>
+        <a type="button" class="btn btn-info align-self-start text-white"
+           href="{% url 'blog:blog.like' blog.id %}">{{ blog.num_of_likes }} Like{{ blog.num_of_likes|pluralize }}</a>
         {% if blog.image %}
             <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="img-fluid">
         {% else %}

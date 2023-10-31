@@ -1,4 +1,4 @@
-from django.forms import ModelForm, ImageField
+from django.forms import ModelForm, ImageField,FileInput
 from .models import Blog, Profile
 
 
@@ -8,4 +8,4 @@ class BlogForm(ModelForm):
     class Meta:
         model = Blog
         # fields = "__all__"
-        exclude = ('user',)
+        exclude = ('user', 'likes')
